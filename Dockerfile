@@ -18,8 +18,8 @@ ENV SKOPEO_BIN=https://github.com/sabre1041/ocp-support-resources/blob/master/sk
 
 USER root
 
-COPY /oc /usr/bin/
-COPY /kubectl /usr/bin
+COPY /oc /usr/bin/oc
+COPY /kubectl /usr/bin/kubectl
 COPY /policy.json /etc/containers/
 
 RUN chown -R 1001:0 $HOME && \

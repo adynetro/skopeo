@@ -18,14 +18,16 @@ ENV SKOPEO_BIN=https://github.com/sabre1041/ocp-support-resources/blob/master/sk
 
 USER root
 
-COPY /oc /usr/bin/oc
-COPY /kubectl /usr/bin/kubectl
+ARG OC_VERSION=4.5
+
+RUN curl -sLo /tmp/oc.tar.gz https://mirror.openshift.com/pub/openshift-v$(echo $OC_VERSION | cut -d'.' -f 1)/clients/oc/$OC_VERSION/linux/oc.tar.gz && \
+    tar xzvf /tmp/oc.tar.gz -C /usr/local/bin/ && \
+    rm -rf /tmp/oc.tar.gz
+
 COPY /policy.json /etc/containers/
 
 RUN chown -R 1001:0 $HOME && \
     chmod -R g+rw $HOME && \
-    chmod +x /usr/bin/oc && \
-    chmod +x /usr/bin/kubectl && \
     curl -L -o /usr/bin/skopeo $SKOPEO_BIN && \
     chown -R 1001:0 /etc/containers && \
     chmod -R g+rw /etc/containers

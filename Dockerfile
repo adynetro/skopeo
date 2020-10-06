@@ -32,4 +32,4 @@ RUN chown -R 1001:0 $HOME && \
     chown -R 1001:0 /etc/containers && \
     chmod -R g+rw /etc/containers
 
-USER 1001
+USER root

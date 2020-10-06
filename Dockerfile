@@ -24,8 +24,8 @@ COPY /policy.json /etc/containers/
 
 RUN chown -R 1001:0 $HOME && \
     chmod -R g+rw $HOME && \
-    chmod +x /usr/bin/oc \
-    chmod +x /usr/bin/kubectl \
+    chmod +x /usr/bin/oc && \
+    chmod +x /usr/bin/kubectl && \
     curl -L -o /usr/bin/skopeo $SKOPEO_BIN && \
     chown -R 1001:0 /etc/containers && \
     chmod -R g+rw /etc/containers

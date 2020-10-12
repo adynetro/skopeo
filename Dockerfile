@@ -31,3 +31,5 @@ RUN chown -R 1001:0 $HOME && \
     curl -L -o /usr/bin/skopeo $SKOPEO_BIN && \
     chown -R 1001:0 /etc/containers && \
     chmod -R g+rw /etc/containers
+
+USER ${USER}
